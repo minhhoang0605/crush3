@@ -2,6 +2,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Em đi chơi với anh nhé 💗</title>
 
     <link
@@ -10,23 +12,65 @@
     />
 
     <style>
+      * {
+        box-sizing: border-box;
+      }
+
       body {
         margin: 0;
         background: #fffafa;
+        font-family: Arial, sans-serif;
       }
 
-      .center-screen {
+      .page {
+        min-height: 100vh;
         display: flex;
         justify-content: center;
         align-items: center;
-        min-height: 100vh;
-        text-align: center;
-        padding: 20px;
+        padding: 30px;
       }
 
-      img {
+      .wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 50px;
+        width: 100%;
+        max-width: 1200px;
+      }
+
+      .main-card {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .top-text {
+        font-size: 18px;
+        color: #555;
+        margin-bottom: 10px;
+      }
+
+      h1 {
+        font-size: 42px;
+        font-weight: 800;
+        color: #222;
+        margin-bottom: 20px;
+      }
+
+      .main-card img {
         width: 320px;
         max-width: 85vw;
+      }
+
+      .message {
+        color: #ff3b6b;
+        font-weight: 700;
+        font-size: 24px;
+        margin-top: 15px;
+        min-height: 40px;
       }
 
       .buttones {
@@ -40,27 +84,10 @@
         transition: 0.3s;
       }
 
-      h1 {
-        font-family: Arial, sans-serif;
-        font-weight: 800;
-        font-size: 42px;
-        margin-bottom: 20px;
-        color: #222;
-      }
-
-      .top-text {
-        font-size: 18px;
-        margin-top: 20px;
-        margin-bottom: 10px;
-        color: #444;
-      }
-
-      .message {
-        color: #ff3b6b;
-        font-weight: 700;
-        font-size: 24px;
-        margin-top: 12px;
-        min-height: 40px;
+      #yesbut {
+        background: #28a745;
+        border: none;
+        padding: 10px 20px;
       }
 
       #nobut {
@@ -68,56 +95,141 @@
         border: none;
       }
 
-      #yesbut {
-        background: #28a745;
-        border: none;
-        padding: 10px 20px;
+      .schedule-note {
+        width: 330px;
+        background: #fff4f7;
+        border: 2px solid #ffb6c8;
+        border-radius: 20px;
+        padding: 25px;
+        box-shadow: 0 8px 25px rgba(255, 105, 135, 0.15);
+      }
+
+      .schedule-note h2 {
+        text-align: center;
+        color: #ff4775;
+        margin-bottom: 20px;
+        font-size: 27px;
+      }
+
+      .schedule-item {
+        background: white;
+        border-radius: 14px;
+        padding: 13px 15px;
+        margin-bottom: 12px;
+        font-size: 17px;
+        color: #333;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+      }
+
+      .schedule-time {
+        font-weight: bold;
+        color: #ff4775;
+      }
+
+      .note-bottom {
+        text-align: center;
+        color: #777;
+        margin-top: 15px;
+        font-size: 15px;
+      }
+
+      @media (max-width: 850px) {
+        .wrapper {
+          flex-direction: column;
+          gap: 25px;
+        }
+
+        .schedule-note {
+          width: 90%;
+          max-width: 360px;
+        }
+
+        h1 {
+          font-size: 34px;
+        }
       }
     </style>
   </head>
 
   <body>
-    <div
-      id="app"
-      class="center-screen"
-      style="display: flex; flex-direction: column"
-    >
-      <p class="top-text">
-        Tối thứ 7 ngày 03/10/2026
-      </p>
+    <div id="app" class="page">
+      <div class="wrapper">
 
-      <h1>
-        Em đi chơi với anh nhé
-      </h1>
+        <!-- PHẦN CHÍNH -->
+        <div class="main-card">
 
-      <img
-        src="https://raw.githubusercontent.com/DzarelDeveloper/Img/main/Let's%20go.gif"
-        alt="cute gif"
-      />
+          <p class="top-text">
+            Tối thứ 7 ngày 03/10/2026
+          </p>
 
-      <div class="message">
-        {{ currentHeaderText }}
-      </div>
+          <h1>
+            Em đi chơi với anh nhé
+          </h1>
 
-      <div class="buttones">
-        <button
-          type="button"
-          class="btn btn-success mr-2"
-          :style="{ fontSize: yesButtonSize + 'rem' }"
-          @click="yesButton"
-          id="yesbut"
-        >
-          Yes ❤️
-        </button>
+          <img
+            src="https://raw.githubusercontent.com/DzarelDeveloper/Img/main/Let's%20go.gif"
+            alt="cute gif"
+          />
 
-        <button
-          type="button"
-          class="btn btn-danger"
-          @click="changeText"
-          id="nobut"
-        >
-          No 😝
-        </button>
+          <div class="message">
+            {{ currentHeaderText }}
+          </div>
+
+          <div class="buttones">
+
+            <button
+              type="button"
+              class="btn btn-success mr-2"
+              :style="{ fontSize: yesButtonSize + 'rem' }"
+              @click="yesButton"
+              id="yesbut"
+            >
+              Yes ❤️
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-danger"
+              @click="changeText"
+              id="nobut"
+            >
+              No 😝
+            </button>
+
+          </div>
+        </div>
+
+        <!-- NOTE LỊCH TRÌNH -->
+        <div class="schedule-note">
+
+          <h2>💌 Lịch trình của chúng mình</h2>
+
+          <div class="schedule-item">
+            <span class="schedule-time">20:00</span>
+            — Anh qua đón em
+          </div>
+
+          <div class="schedule-item">
+            <span class="schedule-time">20:15</span>
+            — Đến Miss Bistro
+          </div>
+
+          <div class="schedule-item">
+            <span class="schedule-time">21:30</span>
+            — Xem phim ở Beta Tây Sơn
+          </div>
+
+          <div class="schedule-item">
+            <span class="schedule-time">00:00</span>
+            — Anh đưa em về nhà
+          </div>
+
+          <div class="note-bottom">
+            Em chỉ cần đồng ý thôi, còn lại để anh lo 🤍
+          </div>
+
+        </div>
+
       </div>
     </div>
 
@@ -149,7 +261,8 @@
         methods: {
           changeText() {
             this.currentHeaderTextIndex =
-              (this.currentHeaderTextIndex + 1) % this.headerText.length;
+              (this.currentHeaderTextIndex + 1) %
+              this.headerText.length;
 
             this.yesButtonSize += 0.6;
           },
@@ -166,5 +279,6 @@
         }
       });
     </script>
+
   </body>
 </html>
